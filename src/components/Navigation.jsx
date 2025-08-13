@@ -26,7 +26,7 @@ const Navigation = ({ onGetStarted, onHome }) => {
             className="flex items-center space-x-3 cursor-pointer group"
             onClick={onHome}
           >
-            <div className="w-10 h-10 bg-gradient-to-r from-emerald-600 to-orange-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
+            <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
               <span className="text-lg text-white">🛡️</span>
             </div>
             <div className="hidden sm:block">
@@ -52,7 +52,7 @@ const Navigation = ({ onGetStarted, onHome }) => {
             </a>
             <button
               onClick={onGetStarted}
-              className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-orange-600 text-white rounded-xl font-semibold font-['Inter'] text-sm hover:shadow-md transition-all duration-300 transform hover:scale-105"
+              className="px-5 py-2 bg-emerald-600 text-white rounded-xl font-semibold font-['Manrope'] text-sm hover:shadow-md transition-all duration-300 transform hover:scale-105"
             >
               Get Started
             </button>
@@ -108,7 +108,7 @@ const Navigation = ({ onGetStarted, onHome }) => {
                 onGetStarted();
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full px-5 py-2 bg-gradient-to-r from-emerald-600 to-orange-600 text-white rounded-xl font-semibold font-['Inter'] text-sm hover:shadow-md transition-all duration-300"
+              className="w-full px-5 py-2 bg-emerald-600 text-white rounded-xl font-semibold font-['Manrope'] text-sm hover:shadow-md transition-all duration-300"
             >
               Get Started
             </button>

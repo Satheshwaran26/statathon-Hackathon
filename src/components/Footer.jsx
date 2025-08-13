@@ -10,7 +10,7 @@ const Footer = ({ onGetStarted, onHome }) => {
           {/* Company Info */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-emerald-600 to-orange-600 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center">
                 <span className="text-lg">🛡️</span>
               </div>
               <div>
@@ -24,7 +24,7 @@ const Footer = ({ onGetStarted, onHome }) => {
             </p>
             <button
               onClick={onGetStarted}
-              className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-orange-600 text-white rounded-xl font-semibold font-['Inter'] text-sm hover:shadow-md transition-all duration-300 transform hover:scale-105"
+              className="px-5 py-2 bg-emerald-600 text-white rounded-xl font-semibold font-['Manrope'] text-sm hover:shadow-md transition-all duration-300 transform hover:scale-105"
             >
               Get Started Today
             </button>
