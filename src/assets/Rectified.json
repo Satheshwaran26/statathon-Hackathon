@@ -1,0 +1,362 @@
+[
+  {
+    "Age": "30–35",
+    "Gender": "F",
+    "City / Region": "Delhi NCR",
+    "Income": "₹6,03,000",
+    "Education": "Graduate",
+    "Occupation": "Education Staff",
+    "Disease": "Flu"
+  },
+  {
+    "Age": "30–35",
+    "Gender": "M",
+    "City / Region": "Mumbai Metro",
+    "Income": "₹7,16,400",
+    "Education": "Postgraduate",
+    "Occupation": "IT Professional",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": "25–30",
+    "Gender": "F",
+    "City / Region": "Chennai Zone",
+    "Income": "₹5,52,750",
+    "Education": "Graduate",
+    "Occupation": "Medical Staff",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": "45–50",
+    "Gender": "M",
+    "City / Region": "Kolkata Dist",
+    "Income": "₹8,94,450",
+    "Education": "Graduate",
+    "Occupation": "Legal Advisor",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "F",
+    "City / Region": "Delhi NCR",
+    "Income": "₹6,37,800",
+    "Education": "Postgraduate",
+    "Occupation": "Analyst",
+    "Disease": "Flu"
+  },
+  {
+    "Age": "40–45",
+    "Gender": "M",
+    "City / Region": "Bengaluru",
+    "Income": "₹9,14,550",
+    "Education": "Graduate",
+    "Occupation": "Manager",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "M",
+    "City / Region": "Pune Metro",
+    "Income": "₹6,96,500",
+    "Education": "Graduate",
+    "Occupation": "Developer",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": "25–30",
+    "Gender": "F",
+    "City / Region": "Hyderabad",
+    "Income": "₹5,17,400",
+    "Education": "Graduate",
+    "Occupation": "Clerk",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": "30–35",
+    "Gender": "M",
+    "City / Region": "Jaipur Zone",
+    "Income": "₹6,83,400",
+    "Education": "Graduate",
+    "Occupation": "Accountant",
+    "Disease": "Flu"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "F",
+    "City / Region": "Delhi NCR",
+    "Income": "₹7,53,750",
+    "Education": "Postgraduate",
+    "Occupation": "Consultant",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": "30–35",
+    "Gender": "M",
+    "City / Region": "Chennai Zone",
+    "Income": "₹6,12,050",
+    "Education": "Graduate",
+    "Occupation": "Technician",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "F",
+    "City / Region": "Mumbai Metro",
+    "Income": "₹8,16,900",
+    "Education": "Graduate",
+    "Occupation": "Designer",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": "40–45",
+    "Gender": "M",
+    "City / Region": "Kolkata Dist",
+    "Income": "₹9,54,750",
+    "Education": "Postgraduate",
+    "Occupation": "Director",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": "25–30",
+    "Gender": "F",
+    "City / Region": "UP Central",
+    "Income": "₹4,77,600",
+    "Education": "Graduate",
+    "Occupation": "Assistant",
+    "Disease": "Flu"
+  },
+  {
+    "Age": "40–45",
+    "Gender": "M",
+    "City / Region": "Bengaluru",
+    "Income": "₹8,56,700",
+    "Education": "Postgraduate",
+    "Occupation": "Engineer",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": "40–45",
+    "Gender": "F",
+    "City / Region": "Pune Metro",
+    "Income": "₹9,04,500",
+    "Education": "Graduate",
+    "Occupation": "Manager",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": "30–35",
+    "Gender": "M",
+    "City / Region": "Hyderabad",
+    "Income": "₹7,26,350",
+    "Education": "Graduate",
+    "Occupation": "Analyst",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "F",
+    "City / Region": "Jaipur Zone",
+    "Income": "₹6,93,450",
+    "Education": "Graduate",
+    "Occupation": "Officer",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": "45–50",
+    "Gender": "M",
+    "City / Region": "Delhi NCR",
+    "Income": "₹10,05,000",
+    "Education": "Postgraduate",
+    "Occupation": "Legal Advisor",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": "30–35",
+    "Gender": "F",
+    "City / Region": "Mumbai Metro",
+    "Income": "₹6,43,150",
+    "Education": "Graduate",
+    "Occupation": "Medical Staff",
+    "Disease": "Flu"
+  },
+  {
+    "Age": "25–30",
+    "Gender": "M",
+    "City / Region": "Chennai Zone",
+    "Income": "₹5,77,100",
+    "Education": "Graduate",
+    "Occupation": "Clerk",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": "40–45",
+    "Gender": "F",
+    "City / Region": "Kolkata Dist",
+    "Income": "₹8,73,650",
+    "Education": "Postgraduate",
+    "Occupation": "Director",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "M",
+    "City / Region": "UP Central",
+    "Income": "₹6,53,250",
+    "Education": "Graduate",
+    "Occupation": "Accountant",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "F",
+    "City / Region": "Bengaluru",
+    "Income": "₹7,56,050",
+    "Education": "Graduate",
+    "Occupation": "Engineer",
+    "Disease": "Flu"
+  },
+  {
+    "Age": "30–35",
+    "Gender": "M",
+    "City / Region": "Pune Metro",
+    "Income": "₹7,36,300",
+    "Education": "Graduate",
+    "Occupation": "Technician",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": "40–45",
+    "Gender": "F",
+    "City / Region": "Hyderabad",
+    "Income": "₹9,25,350",
+    "Education": "Graduate",
+    "Occupation": "Consultant",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": "25–30",
+    "Gender": "M",
+    "City / Region": "Jaipur Zone",
+    "Income": "₹5,12,550",
+    "Education": "Graduate",
+    "Occupation": "Developer",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": "30–35",
+    "Gender": "F",
+    "City / Region": "Delhi NCR",
+    "Income": "₹6,93,450",
+    "Education": "Graduate",
+    "Occupation": "Officer",
+    "Disease": "Flu"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "M",
+    "City / Region": "Mumbai Metro",
+    "Income": "₹8,53,750",
+    "Education": "Postgraduate",
+    "Occupation": "Analyst",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": "25–30",
+    "Gender": "F",
+    "City / Region": "Chennai Zone",
+    "Income": "₹5,42,250",
+    "Education": "Graduate",
+    "Occupation": "Clerk",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": "45–50",
+    "Gender": "M",
+    "City / Region": "Kolkata Dist",
+    "Income": "₹9,55,250",
+    "Education": "Graduate",
+    "Occupation": "Lawyer",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": "40–45",
+    "Gender": "F",
+    "City / Region": "UP Central",
+    "Income": "₹8,13,800",
+    "Education": "Postgraduate",
+    "Occupation": "Manager",
+    "Disease": "Flu"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "M",
+    "City / Region": "Bengaluru",
+    "Income": "₹7,93,050",
+    "Education": "Graduate",
+    "Occupation": "Engineer",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": "30–35",
+    "Gender": "F",
+    "City / Region": "Pune Metro",
+    "Income": "₹7,33,150",
+    "Education": "Graduate",
+    "Occupation": "Accountant",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": "30–35",
+    "Gender": "M",
+    "City / Region": "Hyderabad",
+    "Income": "₹6,67,450",
+    "Education": "Graduate",
+    "Occupation": "Developer",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "F",
+    "City / Region": "Jaipur Zone",
+    "Income": "₹7,12,750",
+    "Education": "Postgraduate",
+    "Occupation": "Technician",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": "40–45",
+    "Gender": "M",
+    "City / Region": "Delhi NCR",
+    "Income": "₹9,07,450",
+    "Education": "Graduate",
+    "Occupation": "Director",
+    "Disease": "Flu"
+  },
+  {
+    "Age": "25–30",
+    "Gender": "F",
+    "City / Region": "Mumbai Metro",
+    "Income": "₹5,87,250",
+    "Education": "Graduate",
+    "Occupation": "Assistant",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": "35–40",
+    "Gender": "M",
+    "City / Region": "Chennai Zone",
+    "Income": "₹7,76,550",
+    "Education": "Postgraduate",
+    "Occupation": "Lawyer",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": "45–50",
+    "Gender": "F",
+    "City / Region": "Kolkata Dist",
+    "Income": "₹10,34,150",
+    "Education": "Graduate",
+    "Occupation": "Consultant",
+    "Disease": "Asthma"
+  }
+]

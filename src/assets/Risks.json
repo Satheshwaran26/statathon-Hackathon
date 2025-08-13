@@ -1,0 +1,50 @@
+[
+  {
+    "Risk / Vulnerability": "Low k-Anonymity",
+    "Description": "Age + Gender + City unique for 22% records"
+  },
+  {
+    "Risk / Vulnerability": "Poor l-Diversity",
+    "Description": "Disease attribute has only 1 value in 6 groups"
+  },
+  {
+    "Risk / Vulnerability": "High t-Closeness",
+    "Description": "Income deviation in Delhi is 0.35 (threshold 0.2)"
+  },
+  {
+    "Risk / Vulnerability": "High δ-Disclosure",
+    "Description": "Re-ID probability exceeds 0.18 for rare occupations"
+  },
+  {
+    "Risk / Vulnerability": "Attribute Disclosure",
+    "Description": "“Director” often linked with Cancer or Asthma"
+  },
+  {
+    "Risk / Vulnerability": "Minimality Attack",
+    "Description": "Suppression patterns reveal original values in 14 records"
+  },
+  {
+    "Risk / Vulnerability": "Background Knowledge Attack",
+    "Description": "Occupation + City reveals exact Name in ground truth"
+  },
+  {
+    "Risk / Vulnerability": "Composition Attack",
+    "Description": "Public salary data matches 19 individuals"
+  },
+  {
+    "Risk / Vulnerability": "Deterministic Linkage",
+    "Description": "Exact Age + Gender + City match in both datasets"
+  },
+  {
+    "Risk / Vulnerability": "Probabilistic Linkage",
+    "Description": "“Bengaluru” matches “Bangalore” via fuzzy linking"
+  },
+  {
+    "Risk / Vulnerability": "ML-based Linkage",
+    "Description": "AI model predicts matches with 88% accuracy"
+  },
+  {
+    "Risk / Vulnerability": "Quasi-Identifier Risk",
+    "Description": "Age + City links to single person in small cities"
+  }
+]

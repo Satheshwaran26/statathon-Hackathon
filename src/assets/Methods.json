@@ -1,0 +1,50 @@
+[
+  {
+    "Risk / Vulnerability": "Low k-Anonymity",
+    "Technique / Method Applied": "Generalization of Age (e.g., 30–35) and Suppression of rare City entries"
+  },
+  {
+    "Risk / Vulnerability": "Poor l-Diversity",
+    "Technique / Method Applied": "Data Swapping of Disease values + Synthetic Data Generation for rare cases"
+  },
+  {
+    "Risk / Vulnerability": "High t-Closeness",
+    "Technique / Method Applied": "Synthetic Data Generation for sensitive attributes in small regions"
+  },
+  {
+    "Risk / Vulnerability": "High δ-Disclosure",
+    "Technique / Method Applied": "Suppression of rare Occupations + Pseudonymization of Job Titles"
+  },
+  {
+    "Risk / Vulnerability": "Attribute Disclosure",
+    "Technique / Method Applied": "Differential Privacy noise addition to sensitive columns"
+  },
+  {
+    "Risk / Vulnerability": "Minimality Attack",
+    "Technique / Method Applied": "Masking partial values to prevent reverse deduction"
+  },
+  {
+    "Risk / Vulnerability": "Background Knowledge Attack",
+    "Technique / Method Applied": "Aggregation of Occupation categories into broader groups"
+  },
+  {
+    "Risk / Vulnerability": "Composition Attack",
+    "Technique / Method Applied": "Synthetic Data Generation + Noise Addition in quasi-identifiers"
+  },
+  {
+    "Risk / Vulnerability": "Deterministic Linkage",
+    "Technique / Method Applied": "Generalization of Age + City Grouping (State level)"
+  },
+  {
+    "Risk / Vulnerability": "Probabilistic Linkage",
+    "Technique / Method Applied": "Standardization of City names before release"
+  },
+  {
+    "Risk / Vulnerability": "ML-based Linkage",
+    "Technique / Method Applied": "Differential Privacy on quasi-identifiers + Data Swapping"
+  },
+  {
+    "Risk / Vulnerability": "Quasi-Identifier Risk",
+    "Technique / Method Applied": "Generalization of small-population city data"
+  }
+]
