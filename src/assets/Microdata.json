@@ -1,0 +1,362 @@
+[
+  {
+    "Age": 30,
+    "Gender": "F",
+    "City": "Delhi",
+    "Income": "₹6,00,000",
+    "Education": "Graduate",
+    "Occupation": "Teacher",
+    "Disease": "Flu"
+  },
+  {
+    "Age": 32,
+    "Gender": "M",
+    "City": "Mumbai",
+    "Income": "₹7,20,000",
+    "Education": "Postgraduate",
+    "Occupation": "Engineer",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": 29,
+    "Gender": "F",
+    "City": "Chennai",
+    "Income": "₹5,50,000",
+    "Education": "Graduate",
+    "Occupation": "Nurse",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": 45,
+    "Gender": "M",
+    "City": "Kolkata",
+    "Income": "₹8,90,000",
+    "Education": "Graduate",
+    "Occupation": "Lawyer",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": 38,
+    "Gender": "F",
+    "City": "Delhi",
+    "Income": "₹6,40,000",
+    "Education": "Postgraduate",
+    "Occupation": "Analyst",
+    "Disease": "Flu"
+  },
+  {
+    "Age": 41,
+    "Gender": "M",
+    "City": "Bengaluru",
+    "Income": "₹9,10,000",
+    "Education": "Graduate",
+    "Occupation": "Manager",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": 35,
+    "Gender": "M",
+    "City": "Pune",
+    "Income": "₹7,00,000",
+    "Education": "Graduate",
+    "Occupation": "Developer",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": 28,
+    "Gender": "F",
+    "City": "Hyderabad",
+    "Income": "₹5,20,000",
+    "Education": "Graduate",
+    "Occupation": "Clerk",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": 33,
+    "Gender": "M",
+    "City": "Jaipur",
+    "Income": "₹6,80,000",
+    "Education": "Graduate",
+    "Occupation": "Accountant",
+    "Disease": "Flu"
+  },
+  {
+    "Age": 39,
+    "Gender": "F",
+    "City": "Delhi",
+    "Income": "₹7,50,000",
+    "Education": "Postgraduate",
+    "Occupation": "Consultant",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": 31,
+    "Gender": "M",
+    "City": "Chennai",
+    "Income": "₹6,10,000",
+    "Education": "Graduate",
+    "Occupation": "Technician",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": 36,
+    "Gender": "F",
+    "City": "Mumbai",
+    "Income": "₹8,20,000",
+    "Education": "Graduate",
+    "Occupation": "Designer",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": 44,
+    "Gender": "M",
+    "City": "Kolkata",
+    "Income": "₹9,50,000",
+    "Education": "Postgraduate",
+    "Occupation": "Director",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": 27,
+    "Gender": "F",
+    "City": "Lucknow",
+    "Income": "₹4,80,000",
+    "Education": "Graduate",
+    "Occupation": "Assistant",
+    "Disease": "Flu"
+  },
+  {
+    "Age": 40,
+    "Gender": "M",
+    "City": "Bengaluru",
+    "Income": "₹8,60,000",
+    "Education": "Postgraduate",
+    "Occupation": "Engineer",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": 42,
+    "Gender": "F",
+    "City": "Pune",
+    "Income": "₹9,00,000",
+    "Education": "Graduate",
+    "Occupation": "Manager",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": 34,
+    "Gender": "M",
+    "City": "Hyderabad",
+    "Income": "₹7,30,000",
+    "Education": "Graduate",
+    "Occupation": "Analyst",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": 37,
+    "Gender": "F",
+    "City": "Jaipur",
+    "Income": "₹6,90,000",
+    "Education": "Graduate",
+    "Occupation": "Officer",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": 46,
+    "Gender": "M",
+    "City": "Delhi",
+    "Income": "₹10,20,000",
+    "Education": "Postgraduate",
+    "Occupation": "Lawyer",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": 30,
+    "Gender": "F",
+    "City": "Mumbai",
+    "Income": "₹6,40,000",
+    "Education": "Graduate",
+    "Occupation": "Nurse",
+    "Disease": "Flu"
+  },
+  {
+    "Age": 29,
+    "Gender": "M",
+    "City": "Chennai",
+    "Income": "₹5,80,000",
+    "Education": "Graduate",
+    "Occupation": "Clerk",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": 41,
+    "Gender": "F",
+    "City": "Kolkata",
+    "Income": "₹8,70,000",
+    "Education": "Postgraduate",
+    "Occupation": "Director",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": 38,
+    "Gender": "M",
+    "City": "Lucknow",
+    "Income": "₹6,50,000",
+    "Education": "Graduate",
+    "Occupation": "Accountant",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": 35,
+    "Gender": "F",
+    "City": "Bengaluru",
+    "Income": "₹7,60,000",
+    "Education": "Graduate",
+    "Occupation": "Engineer",
+    "Disease": "Flu"
+  },
+  {
+    "Age": 33,
+    "Gender": "M",
+    "City": "Pune",
+    "Income": "₹7,40,000",
+    "Education": "Graduate",
+    "Occupation": "Technician",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": 44,
+    "Gender": "F",
+    "City": "Hyderabad",
+    "Income": "₹9,30,000",
+    "Education": "Graduate",
+    "Occupation": "Consultant",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": 27,
+    "Gender": "M",
+    "City": "Jaipur",
+    "Income": "₹5,10,000",
+    "Education": "Graduate",
+    "Occupation": "Developer",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": 32,
+    "Gender": "F",
+    "City": "Delhi",
+    "Income": "₹6,90,000",
+    "Education": "Graduate",
+    "Occupation": "Officer",
+    "Disease": "Flu"
+  },
+  {
+    "Age": 39,
+    "Gender": "M",
+    "City": "Mumbai",
+    "Income": "₹8,50,000",
+    "Education": "Postgraduate",
+    "Occupation": "Analyst",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": 28,
+    "Gender": "F",
+    "City": "Chennai",
+    "Income": "₹5,40,000",
+    "Education": "Graduate",
+    "Occupation": "Clerk",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": 45,
+    "Gender": "M",
+    "City": "Kolkata",
+    "Income": "₹9,60,000",
+    "Education": "Graduate",
+    "Occupation": "Lawyer",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": 40,
+    "Gender": "F",
+    "City": "Lucknow",
+    "Income": "₹8,10,000",
+    "Education": "Postgraduate",
+    "Occupation": "Manager",
+    "Disease": "Flu"
+  },
+  {
+    "Age": 36,
+    "Gender": "M",
+    "City": "Bengaluru",
+    "Income": "₹7,90,000",
+    "Education": "Graduate",
+    "Occupation": "Engineer",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": 34,
+    "Gender": "F",
+    "City": "Pune",
+    "Income": "₹7,30,000",
+    "Education": "Graduate",
+    "Occupation": "Accountant",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": 31,
+    "Gender": "M",
+    "City": "Hyderabad",
+    "Income": "₹6,70,000",
+    "Education": "Graduate",
+    "Occupation": "Developer",
+    "Disease": "Asthma"
+  },
+  {
+    "Age": 37,
+    "Gender": "F",
+    "City": "Jaipur",
+    "Income": "₹7,10,000",
+    "Education": "Postgraduate",
+    "Occupation": "Technician",
+    "Disease": "Diabetes"
+  },
+  {
+    "Age": 42,
+    "Gender": "M",
+    "City": "Delhi",
+    "Income": "₹9,10,000",
+    "Education": "Graduate",
+    "Occupation": "Director",
+    "Disease": "Flu"
+  },
+  {
+    "Age": 29,
+    "Gender": "F",
+    "City": "Mumbai",
+    "Income": "₹5,90,000",
+    "Education": "Graduate",
+    "Occupation": "Assistant",
+    "Disease": "Cancer"
+  },
+  {
+    "Age": 38,
+    "Gender": "M",
+    "City": "Chennai",
+    "Income": "₹7,80,000",
+    "Education": "Postgraduate",
+    "Occupation": "Lawyer",
+    "Disease": "Migraine"
+  },
+  {
+    "Age": 46,
+    "Gender": "F",
+    "City": "Kolkata",
+    "Income": "₹10,30,000",
+    "Education": "Graduate",
+    "Occupation": "Consultant",
+    "Disease": "Asthma"
+  }
+]

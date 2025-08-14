@@ -1,109 +1,64 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
-const Footer = ({ onGetStarted, onHome }) => {
+const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+    navigate('/upload');
+  };
+
+  const handleHome = () => {
+    navigate('/');
+  };
+
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+    <footer className="bg-white text-gray-800 border-t border-gray-200">
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-1 gap-12">
           {/* Company Info */}
-          <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center">
-                <span className="text-lg">🛡️</span>
-              </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-6">
+              <img 
+                src={logo} 
+                alt="QUASISHIELD Logo" 
+                className="w-12 h-12 object-contain mr-4"
+              />
               <div>
-                <div className="text-lg font-bold font-['Inter']">CyberShield</div>
-                <div className="text-xs text-gray-400 font-['Inter']">Security & Privacy</div>
+                <h3 className="text-2xl font-black text-gray-900 font-['Manrope']">QUASISHIELD</h3>
+                <p className="text-sm text-gray-600 font-['Manrope']">Advanced Security Platform</p>
               </div>
             </div>
-            <p className="text-gray-300 font-['Inter'] leading-relaxed mb-4 max-w-md text-sm">
-              Advanced cybersecurity tool for detecting, analyzing, and rectifying cyber attacks in datasets. 
+            <p className="text-gray-600 mb-6 font-['Manrope'] leading-relaxed max-w-2xl mx-auto">
+              Enterprise-grade cybersecurity tool for detecting, analyzing, and rectifying cyber attacks in datasets. 
               Protect your data with state-of-the-art privacy preservation techniques.
             </p>
-            <button
-              onClick={onGetStarted}
-              className="px-5 py-2 bg-emerald-600 text-white rounded-xl font-semibold font-['Manrope'] text-sm hover:shadow-md transition-all duration-300 transform hover:scale-105"
-            >
-              Get Started Today
+            <button className="px-6 py-3 bg-gray-900 text-white rounded-lg font-semibold font-['Manrope'] hover:bg-gray-800 transition-all duration-300 shadow-md hover:shadow-lg">
+              Get Started
             </button>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-base font-semibold mb-4 font-['Inter']">Quick Links</h3>
-            <ul className="space-y-2 font-['Inter']">
-              <li>
-                <a 
-                  href="#features" 
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-sm"
-                >
-                  Features
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#how-it-works" 
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-sm"
-                >
-                  How It Works
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="#about" 
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-sm"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <button 
-                  onClick={onHome}
-                  className="text-gray-300 hover:text-white transition-colors duration-300 text-sm"
-                >
-                  Home
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-base font-semibold mb-4 font-['Inter']">Contact</h3>
-            <ul className="space-y-2 font-['Inter']">
-              <li className="flex items-center space-x-2 text-gray-300 text-sm">
-                <span>📧</span>
-                <span>support@cybershield.com</span>
-              </li>
-              <li className="flex items-center space-x-2 text-gray-300 text-sm">
-                <span>🌐</span>
-                <span>www.cybershield.com</span>
-              </li>
-              <li className="flex items-center space-x-2 text-gray-300 text-sm">
-                <span>📱</span>
-                <span>+1 (555) 123-4567</span>
-              </li>
-            </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 font-['Inter'] text-sm">
-            © {currentYear} CyberShield. All rights reserved.
-          </p>
-          <div className="flex space-x-4 mt-3 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-              Terms of Service
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300 text-sm">
-              Cookie Policy
-            </a>
+        <div className="border-t border-gray-200 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-600 font-['Manrope'] mb-4 md:mb-0">
+              © {currentYear} QUASISHIELD. All rights reserved.
+            </p>
+            <div className="flex space-x-6">
+              <a href="#" className="text-gray-600 hover:text-gray-900 font-['Manrope'] transition-colors duration-300">
+                Privacy Policy
+              </a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 font-['Manrope'] transition-colors duration-300">
+                Terms of Service
+              </a>
+              <a href="#" className="text-gray-600 hover:text-gray-900 font-['Manrope'] transition-colors duration-300">
+                Cookie Policy
+              </a>
+            </div>
           </div>
         </div>
       </div>

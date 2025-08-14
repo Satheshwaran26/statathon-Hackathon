@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
-const Navigation = ({ onGetStarted, onHome }) => {
+const Navigation = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleGetStarted = () => {
+    navigate('/upload');
+  };
+
+  const handleHome = () => {
+    navigate('/');
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,45 +26,46 @@ const Navigation = ({ onGetStarted, onHome }) => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-gray-200' 
+        ? 'bg-white/95 backdrop-blur-xl shadow-2xl border-b border-slate-200' 
         : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div 
-            className="flex items-center space-x-3 cursor-pointer group"
-            onClick={onHome}
+            className="flex items-center space-x-4 cursor-pointer group"
+            onClick={handleHome}
           >
-            <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
-              <span className="text-lg text-white">🛡️</span>
+            <div className="w-16 h-16 ">
+              <img 
+                src={logo} 
+                alt="QUASISHIELD Logo" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="hidden sm:block">
-              <div className="text-lg font-bold text-gray-800 font-['Inter'] group-hover:text-emerald-600 transition-colors duration-300">
-                CyberShield
+              <div className="text-2xl font-black text-slate-800 font-['Manrope'] group-hover:text-slate-600 transition-colors duration-300">
+                QUASISHIELD
               </div>
-              <div className="text-xs text-gray-500 font-['Inter']">
-                Security & Privacy
+              <div className="text-sm text-slate-500 font-['Manrope'] font-medium">
+                Advanced Security Platform
               </div>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <a href="#features" className="text-gray-700 hover:text-emerald-600 font-medium font-['Inter'] text-sm transition-colors duration-300">
+          <div className="hidden md:flex items-center space-x-8">
+            <a href="#features" className="text-slate-700 hover:text-slate-600 font-semibold font-['Manrope'] text-base transition-all duration-300 hover:scale-105">
               Features
             </a>
-            <a href="#how-it-works" className="text-gray-700 hover:text-emerald-600 font-medium font-['Inter'] text-sm transition-colors duration-300">
-              How It Works
-            </a>
-            <a href="#about" className="text-gray-700 hover:text-emerald-600 font-medium font-['Inter'] text-sm transition-colors duration-300">
+            <a href="#about" className="text-slate-700 hover:text-slate-600 font-semibold font-['Manrope'] text-base transition-all duration-300 hover:scale-105">
               About
             </a>
             <button
-              onClick={onGetStarted}
-              className="px-5 py-2 bg-emerald-600 text-white rounded-xl font-semibold font-['Manrope'] text-sm hover:shadow-md transition-all duration-300 transform hover:scale-105"
+              onClick={handleGetStarted}
+              className="px-8 py-3 bg-gradient-to-r from-slate-700 to-slate-800 text-white rounded-2xl font-bold font-['Manrope'] text-base hover:shadow-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               Get Started
             </button>
@@ -60,17 +73,17 @@ const Navigation = ({ onGetStarted, onHome }) => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+            className="md:hidden p-3 rounded-2xl hover:bg-slate-100 transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <div className="w-5 h-5 flex flex-col justify-center items-center">
-              <span className={`block w-4 h-0.5 bg-gray-600 transition-all duration-300 ${
+            <div className="w-6 h-6 flex flex-col justify-center items-center">
+              <span className={`block w-5 h-1 bg-slate-600 transition-all duration-300 rounded-full ${
                 isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''
               }`}></span>
-              <span className={`block w-4 h-0.5 bg-gray-600 transition-all duration-300 mt-1 ${
+              <span className={`block w-5 h-1 bg-slate-600 transition-all duration-300 rounded-full mt-1 ${
                 isMobileMenuOpen ? 'opacity-0' : ''
               }`}></span>
-              <span className={`block w-4 h-0.5 bg-gray-600 transition-all duration-300 mt-1 ${
+              <span className={`block w-5 h-1 bg-slate-600 transition-all duration-300 rounded-full mt-1 ${
                 isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''
               }`}></span>
             </div>
@@ -78,37 +91,30 @@ const Navigation = ({ onGetStarted, onHome }) => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        <div className={`md:hidden transition-all duration-500 overflow-hidden ${
+          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <div className="py-4 space-y-3 border-t border-gray-200">
+          <div className="py-6 space-y-4 border-t border-slate-200">
             <a 
               href="#features" 
-              className="block text-gray-700 hover:text-emerald-600 font-medium font-['Inter'] text-sm transition-colors duration-300"
+              className="block text-slate-700 hover:text-slate-600 font-semibold font-['Manrope'] text-base transition-colors duration-300 hover:scale-105"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Features
             </a>
             <a 
-              href="#how-it-works" 
-              className="block text-gray-700 hover:text-emerald-600 font-medium font-['Inter'] text-sm transition-colors duration-300"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              How It Works
-            </a>
-            <a 
               href="#about" 
-              className="block text-gray-700 hover:text-emerald-600 font-medium font-['Inter'] text-sm transition-colors duration-300"
+              className="block text-slate-700 hover:text-slate-600 font-semibold font-['Manrope'] text-base transition-colors duration-300 hover:scale-105"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About
             </a>
             <button
               onClick={() => {
-                onGetStarted();
+                handleGetStarted();
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full px-5 py-2 bg-emerald-600 text-white rounded-xl font-semibold font-['Manrope'] text-sm hover:shadow-md transition-all duration-300"
+              className="w-full px-8 py-3 bg-gradient-to-r from-slate-700 to-slate-800 text-white rounded-2xl font-bold font-['Manrope'] text-base hover:shadow-xl transition-all duration-300"
             >
               Get Started
             </button>

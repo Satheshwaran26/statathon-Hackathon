@@ -1,0 +1,362 @@
+[
+  {
+    "Name": "Neha Sharma",
+    "Age": 30,
+    "Gender": "F",
+    "City": "Delhi",
+    "Income": "₹6,00,000",
+    "Education": "Graduate",
+    "Occupation": "Teacher"
+  },
+  {
+    "Name": "Rajesh Kumar",
+    "Age": 32,
+    "Gender": "M",
+    "City": "Mumbai",
+    "Income": "₹7,20,000",
+    "Education": "Postgraduate",
+    "Occupation": "Engineer"
+  },
+  {
+    "Name": "Priya Menon",
+    "Age": 29,
+    "Gender": "F",
+    "City": "Chennai",
+    "Income": "₹5,50,000",
+    "Education": "Graduate",
+    "Occupation": "Nurse"
+  },
+  {
+    "Name": "Arjun Banerjee",
+    "Age": 45,
+    "Gender": "M",
+    "City": "Kolkata",
+    "Income": "₹8,90,000",
+    "Education": "Graduate",
+    "Occupation": "Lawyer"
+  },
+  {
+    "Name": "Shreya Kapoor",
+    "Age": 38,
+    "Gender": "F",
+    "City": "Delhi",
+    "Income": "₹6,40,000",
+    "Education": "Postgraduate",
+    "Occupation": "Analyst"
+  },
+  {
+    "Name": "Mohan Reddy",
+    "Age": 41,
+    "Gender": "M",
+    "City": "Bengaluru",
+    "Income": "₹9,10,000",
+    "Education": "Graduate",
+    "Occupation": "Manager"
+  },
+  {
+    "Name": "Kunal Verma",
+    "Age": 35,
+    "Gender": "M",
+    "City": "Pune",
+    "Income": "₹7,00,000",
+    "Education": "Graduate",
+    "Occupation": "Developer"
+  },
+  {
+    "Name": "Pooja Nair",
+    "Age": 28,
+    "Gender": "F",
+    "City": "Hyderabad",
+    "Income": "₹5,20,000",
+    "Education": "Graduate",
+    "Occupation": "Clerk"
+  },
+  {
+    "Name": "Rohan Mehta",
+    "Age": 33,
+    "Gender": "M",
+    "City": "Jaipur",
+    "Income": "₹6,80,000",
+    "Education": "Graduate",
+    "Occupation": "Accountant"
+  },
+  {
+    "Name": "Ananya Singh",
+    "Age": 39,
+    "Gender": "F",
+    "City": "Delhi",
+    "Income": "₹7,50,000",
+    "Education": "Postgraduate",
+    "Occupation": "Consultant"
+  },
+  {
+    "Name": "Suresh Iyer",
+    "Age": 31,
+    "Gender": "M",
+    "City": "Chennai",
+    "Income": "₹6,10,000",
+    "Education": "Graduate",
+    "Occupation": "Technician"
+  },
+  {
+    "Name": "Meera Desai",
+    "Age": 36,
+    "Gender": "F",
+    "City": "Mumbai",
+    "Income": "₹8,20,000",
+    "Education": "Graduate",
+    "Occupation": "Designer"
+  },
+  {
+    "Name": "Aditya Sen",
+    "Age": 44,
+    "Gender": "M",
+    "City": "Kolkata",
+    "Income": "₹9,50,000",
+    "Education": "Postgraduate",
+    "Occupation": "Director"
+  },
+  {
+    "Name": "Ritu Gupta",
+    "Age": 27,
+    "Gender": "F",
+    "City": "Lucknow",
+    "Income": "₹4,80,000",
+    "Education": "Graduate",
+    "Occupation": "Assistant"
+  },
+  {
+    "Name": "Vivek Anand",
+    "Age": 40,
+    "Gender": "M",
+    "City": "Bengaluru",
+    "Income": "₹8,60,000",
+    "Education": "Postgraduate",
+    "Occupation": "Engineer"
+  },
+  {
+    "Name": "Kavya Pillai",
+    "Age": 42,
+    "Gender": "F",
+    "City": "Pune",
+    "Income": "₹9,00,000",
+    "Education": "Graduate",
+    "Occupation": "Manager"
+  },
+  {
+    "Name": "Deepak Joshi",
+    "Age": 34,
+    "Gender": "M",
+    "City": "Hyderabad",
+    "Income": "₹7,30,000",
+    "Education": "Graduate",
+    "Occupation": "Analyst"
+  },
+  {
+    "Name": "Sneha Bhat",
+    "Age": 37,
+    "Gender": "F",
+    "City": "Jaipur",
+    "Income": "₹6,90,000",
+    "Education": "Graduate",
+    "Occupation": "Officer"
+  },
+  {
+    "Name": "Nitin Chauhan",
+    "Age": 46,
+    "Gender": "M",
+    "City": "Delhi",
+    "Income": "₹10,20,000",
+    "Education": "Postgraduate",
+    "Occupation": "Lawyer"
+  },
+  {
+    "Name": "Radhika Shah",
+    "Age": 30,
+    "Gender": "F",
+    "City": "Mumbai",
+    "Income": "₹6,40,000",
+    "Education": "Graduate",
+    "Occupation": "Nurse"
+  },
+  {
+    "Name": "Harish Patel",
+    "Age": 29,
+    "Gender": "M",
+    "City": "Chennai",
+    "Income": "₹5,80,000",
+    "Education": "Graduate",
+    "Occupation": "Clerk"
+  },
+  {
+    "Name": "Swati Mukherjee",
+    "Age": 41,
+    "Gender": "F",
+    "City": "Kolkata",
+    "Income": "₹8,70,000",
+    "Education": "Postgraduate",
+    "Occupation": "Director"
+  },
+  {
+    "Name": "Manish Yadav",
+    "Age": 38,
+    "Gender": "M",
+    "City": "Lucknow",
+    "Income": "₹6,50,000",
+    "Education": "Graduate",
+    "Occupation": "Accountant"
+  },
+  {
+    "Name": "Aarti Saxena",
+    "Age": 35,
+    "Gender": "F",
+    "City": "Bengaluru",
+    "Income": "₹7,60,000",
+    "Education": "Graduate",
+    "Occupation": "Engineer"
+  },
+  {
+    "Name": "Rahul Bhatt",
+    "Age": 33,
+    "Gender": "M",
+    "City": "Pune",
+    "Income": "₹7,40,000",
+    "Education": "Graduate",
+    "Occupation": "Technician"
+  },
+  {
+    "Name": "Charu Malhotra",
+    "Age": 44,
+    "Gender": "F",
+    "City": "Hyderabad",
+    "Income": "₹9,30,000",
+    "Education": "Graduate",
+    "Occupation": "Consultant"
+  },
+  {
+    "Name": "Sameer Khan",
+    "Age": 27,
+    "Gender": "M",
+    "City": "Jaipur",
+    "Income": "₹5,10,000",
+    "Education": "Graduate",
+    "Occupation": "Developer"
+  },
+  {
+    "Name": "Divya Joshi",
+    "Age": 32,
+    "Gender": "F",
+    "City": "Delhi",
+    "Income": "₹6,90,000",
+    "Education": "Graduate",
+    "Occupation": "Officer"
+  },
+  {
+    "Name": "Ajay Kulkarni",
+    "Age": 39,
+    "Gender": "M",
+    "City": "Mumbai",
+    "Income": "₹8,50,000",
+    "Education": "Postgraduate",
+    "Occupation": "Analyst"
+  },
+  {
+    "Name": "Shruti Nair",
+    "Age": 28,
+    "Gender": "F",
+    "City": "Chennai",
+    "Income": "₹5,40,000",
+    "Education": "Graduate",
+    "Occupation": "Clerk"
+  },
+  {
+    "Name": "Amit Ghosh",
+    "Age": 45,
+    "Gender": "M",
+    "City": "Kolkata",
+    "Income": "₹9,60,000",
+    "Education": "Graduate",
+    "Occupation": "Lawyer"
+  },
+  {
+    "Name": "Nisha Verghese",
+    "Age": 40,
+    "Gender": "F",
+    "City": "Lucknow",
+    "Income": "₹8,10,000",
+    "Education": "Postgraduate",
+    "Occupation": "Manager"
+  },
+  {
+    "Name": "Abhishek Jain",
+    "Age": 36,
+    "Gender": "M",
+    "City": "Bengaluru",
+    "Income": "₹7,90,000",
+    "Education": "Graduate",
+    "Occupation": "Engineer"
+  },
+  {
+    "Name": "Tanvi Shetty",
+    "Age": 34,
+    "Gender": "F",
+    "City": "Pune",
+    "Income": "₹7,30,000",
+    "Education": "Graduate",
+    "Occupation": "Accountant"
+  },
+  {
+    "Name": "Karan Kapoor",
+    "Age": 31,
+    "Gender": "M",
+    "City": "Hyderabad",
+    "Income": "₹6,70,000",
+    "Education": "Graduate",
+    "Occupation": "Developer"
+  },
+  {
+    "Name": "Preeti Das",
+    "Age": 37,
+    "Gender": "F",
+    "City": "Jaipur",
+    "Income": "₹7,10,000",
+    "Education": "Postgraduate",
+    "Occupation": "Technician"
+  },
+  {
+    "Name": "Sanjay Singh",
+    "Age": 42,
+    "Gender": "M",
+    "City": "Delhi",
+    "Income": "₹9,10,000",
+    "Education": "Graduate",
+    "Occupation": "Director"
+  },
+  {
+    "Name": "Pallavi Roy",
+    "Age": 29,
+    "Gender": "F",
+    "City": "Mumbai",
+    "Income": "₹5,90,000",
+    "Education": "Graduate",
+    "Occupation": "Assistant"
+  },
+  {
+    "Name": "Ashok Menon",
+    "Age": 38,
+    "Gender": "M",
+    "City": "Chennai",
+    "Income": "₹7,80,000",
+    "Education": "Postgraduate",
+    "Occupation": "Lawyer"
+  },
+  {
+    "Name": "Sunita Joshi",
+    "Age": 46,
+    "Gender": "F",
+    "City": "Kolkata",
+    "Income": "₹10,30,000",
+    "Education": "Graduate",
+    "Occupation": "Consultant"
+  }
+]

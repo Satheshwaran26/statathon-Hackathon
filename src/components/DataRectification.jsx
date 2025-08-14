@@ -1,297 +1,587 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const DataRectification = ({ detectedAttacks, solutions, onDataRectification, rectifiedData }) => {
-  const [isRectifying, setIsRectifying] = useState(false);
-  const [localRectifiedData, setLocalRectifiedData] = useState([]);
-  const [rectificationComplete, setIsRectificationComplete] = useState(false);
+const DataRectification = () => {
+  const navigate = useNavigate();
+  const [isProcessing, setIsProcessing] = useState(true);
+  const [rectificationStep, setRectificationStep] = useState('');
+  const [dataRevealed, setDataRevealed] = useState(0);
+  const [showData, setShowData] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
 
-  // Mock data rectification function using Rectified.json data
-  const startRectification = () => {
-    setIsRectifying(true);
-    
-    // Simulate processing time
-    setTimeout(() => {
-      const mockRectifiedData = [
-        {
-          id: 1,
-          originalValue: "'; DROP TABLE users; --",
-          rectifiedValue: "DROP TABLE users",
-          attackType: "SQL Injection",
-          status: "Cleaned",
-          confidence: 98
-        },
-        {
-          id: 2,
-          originalValue: "<script>alert('XSS')</script>",
-          rectifiedValue: "alert XSS",
-          attackType: "XSS",
-          status: "Sanitized",
-          confidence: 95
-        },
-        {
-          id: 3,
-          originalValue: "admin';--",
-          rectifiedValue: "admin",
-          attackType: "SQL Injection",
-          status: "Cleaned",
-          confidence: 97
-        },
-        {
-          id: 4,
-          originalValue: "javascript:alert('XSS')",
-          rectifiedValue: "alert XSS",
-          attackType: "XSS",
-          status: "Sanitized",
-          confidence: 94
-        },
-        {
-          id: 5,
-          originalValue: "1' OR '1'='1",
-          rectifiedValue: "1 OR 1=1",
-          attackType: "SQL Injection",
-          status: "Cleaned",
-          confidence: 96
-        },
-        {
-          id: 6,
-          originalValue: "<img src=x onerror=alert('XSS')>",
-          rectifiedValue: "img src=x onerror=alert XSS",
-          attackType: "XSS",
-          status: "Sanitized",
-          confidence: 93
-        },
-        {
-          id: 7,
-          originalValue: "'; INSERT INTO users VALUES ('hacker', 'password'); --",
-          rectifiedValue: "INSERT INTO users VALUES hacker password",
-          attackType: "SQL Injection",
-          status: "Cleaned",
-          confidence: 99
-        },
-        {
-          id: 8,
-          originalValue: "eval('alert(\"XSS\")')",
-          rectifiedValue: "alert XSS",
-          attackType: "XSS",
-          status: "Sanitized",
-          confidence: 92
-        }
-      ];
-
-      setLocalRectifiedData(mockRectifiedData);
-      setIsRectifying(false);
-      setIsRectificationComplete(true);
-    }, 4000);
-  };
-
-  const downloadRectifiedData = () => {
-    const dataToDownload = localRectifiedData.length > 0 ? localRectifiedData : rectifiedData;
-    if (dataToDownload.length === 0) return;
-
-    // Convert to CSV format
-    const headers = ['ID', 'Original Value', 'Rectified Value', 'Attack Type', 'Status', 'Confidence'];
-    const csvContent = [
-      headers.join(','),
-      ...dataToDownload.map(row => [
-        row.id,
-        `"${row.originalValue}"`,
-        `"${row.rectifiedValue}"`,
-        row.attackType,
-        row.status,
-        row.confidence
-      ].join(','))
-    ].join('\n');
-
-    // Create and download file
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.setAttribute('href', url);
-    link.setAttribute('download', 'rectified_data.csv');
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const getStatusColor = (status) => {
-    switch (status.toLowerCase()) {
-      case 'cleaned':
-        return 'bg-green-500 text-white';
-      case 'sanitized':
-        return 'bg-blue-500 text-white';
-      case 'flagged':
-        return 'bg-yellow-500 text-black';
-      case 'removed':
-        return 'bg-red-500 text-white';
-      default:
-        return 'bg-gray-500 text-white';
+  const rectifiedData = [
+    {
+      "Age": "30–35",
+      "Gender": "F",
+      "City / Region": "Delhi NCR",
+      "Income": "₹6,03,000",
+      "Education": "Graduate",
+      "Occupation": "Education Staff",
+      "Disease": "Flu"
+    },
+    {
+      "Age": "30–35",
+      "Gender": "M",
+      "City / Region": "Mumbai Metro",
+      "Income": "₹7,16,400",
+      "Education": "Postgraduate",
+      "Occupation": "IT Professional",
+      "Disease": "Diabetes"
+    },
+    {
+      "Age": "25–30",
+      "Gender": "F",
+      "City / Region": "Chennai Zone",
+      "Income": "₹5,52,750",
+      "Education": "Graduate",
+      "Occupation": "Medical Staff",
+      "Disease": "Asthma"
+    },
+    {
+      "Age": "45–50",
+      "Gender": "M",
+      "City / Region": "Kolkata Dist",
+      "Income": "₹8,94,450",
+      "Education": "Graduate",
+      "Occupation": "Legal Advisor",
+      "Disease": "Cancer"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "F",
+      "City / Region": "Delhi NCR",
+      "Income": "₹6,37,800",
+      "Education": "Postgraduate",
+      "Occupation": "Analyst",
+      "Disease": "Flu"
+    },
+    {
+      "Age": "40–45",
+      "Gender": "M",
+      "City / Region": "Bengaluru",
+      "Income": "₹9,14,550",
+      "Education": "Graduate",
+      "Occupation": "Manager",
+      "Disease": "Diabetes"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "M",
+      "City / Region": "Pune Metro",
+      "Income": "₹6,96,500",
+      "Education": "Graduate",
+      "Occupation": "Developer",
+      "Disease": "Migraine"
+    },
+    {
+      "Age": "25–30",
+      "Gender": "F",
+      "City / Region": "Hyderabad",
+      "Income": "₹5,17,400",
+      "Education": "Graduate",
+      "Occupation": "Clerk",
+      "Disease": "Asthma"
+    },
+    {
+      "Age": "30–35",
+      "Gender": "M",
+      "City / Region": "Jaipur Zone",
+      "Income": "₹6,83,400",
+      "Education": "Graduate",
+      "Occupation": "Accountant",
+      "Disease": "Flu"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "F",
+      "City / Region": "Delhi NCR",
+      "Income": "₹7,53,750",
+      "Education": "Postgraduate",
+      "Occupation": "Consultant",
+      "Disease": "Cancer"
+    },
+    {
+      "Age": "30–35",
+      "Gender": "M",
+      "City / Region": "Chennai Zone",
+      "Income": "₹6,12,050",
+      "Education": "Graduate",
+      "Occupation": "Technician",
+      "Disease": "Diabetes"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "F",
+      "City / Region": "Mumbai Metro",
+      "Income": "₹8,16,900",
+      "Education": "Graduate",
+      "Occupation": "Designer",
+      "Disease": "Migraine"
+    },
+    {
+      "Age": "40–45",
+      "Gender": "M",
+      "City / Region": "Kolkata Dist",
+      "Income": "₹9,54,750",
+      "Education": "Postgraduate",
+      "Occupation": "Director",
+      "Disease": "Cancer"
+    },
+    {
+      "Age": "25–30",
+      "Gender": "F",
+      "City / Region": "UP Central",
+      "Income": "₹4,77,600",
+      "Education": "Graduate",
+      "Occupation": "Assistant",
+      "Disease": "Flu"
+    },
+    {
+      "Age": "40–45",
+      "Gender": "M",
+      "City / Region": "Bengaluru",
+      "Income": "₹8,56,700",
+      "Education": "Postgraduate",
+      "Occupation": "Engineer",
+      "Disease": "Diabetes"
+    },
+    {
+      "Age": "40–45",
+      "Gender": "F",
+      "City / Region": "Pune Metro",
+      "Income": "₹9,04,500",
+      "Education": "Graduate",
+      "Occupation": "Manager",
+      "Disease": "Cancer"
+    },
+    {
+      "Age": "30–35",
+      "Gender": "M",
+      "City / Region": "Hyderabad",
+      "Income": "₹7,26,350",
+      "Education": "Graduate",
+      "Occupation": "Analyst",
+      "Disease": "Migraine"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "F",
+      "City / Region": "Jaipur Zone",
+      "Income": "₹6,93,450",
+      "Education": "Graduate",
+      "Occupation": "Officer",
+      "Disease": "Asthma"
+    },
+    {
+      "Age": "45–50",
+      "Gender": "M",
+      "City / Region": "Delhi NCR",
+      "Income": "₹10,05,000",
+      "Education": "Postgraduate",
+      "Occupation": "Legal Advisor",
+      "Disease": "Diabetes"
+    },
+    {
+      "Age": "30–35",
+      "Gender": "F",
+      "City / Region": "Mumbai Metro",
+      "Income": "₹6,43,150",
+      "Education": "Graduate",
+      "Occupation": "Medical Staff",
+      "Disease": "Flu"
+    },
+    {
+      "Age": "25–30",
+      "Gender": "M",
+      "City / Region": "Chennai Zone",
+      "Income": "₹5,77,100",
+      "Education": "Graduate",
+      "Occupation": "Clerk",
+      "Disease": "Migraine"
+    },
+    {
+      "Age": "40–45",
+      "Gender": "F",
+      "City / Region": "Kolkata Dist",
+      "Income": "₹8,73,650",
+      "Education": "Postgraduate",
+      "Occupation": "Director",
+      "Disease": "Asthma"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "M",
+      "City / Region": "UP Central",
+      "Income": "₹6,53,250",
+      "Education": "Graduate",
+      "Occupation": "Accountant",
+      "Disease": "Cancer"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "F",
+      "City / Region": "Bengaluru",
+      "Income": "₹7,56,050",
+      "Education": "Graduate",
+      "Occupation": "Engineer",
+      "Disease": "Flu"
+    },
+    {
+      "Age": "30–35",
+      "Gender": "M",
+      "City / Region": "Pune Metro",
+      "Income": "₹7,36,300",
+      "Education": "Graduate",
+      "Occupation": "Technician",
+      "Disease": "Diabetes"
+    },
+    {
+      "Age": "40–45",
+      "Gender": "F",
+      "City / Region": "Hyderabad",
+      "Income": "₹9,25,350",
+      "Education": "Graduate",
+      "Occupation": "Consultant",
+      "Disease": "Migraine"
+    },
+    {
+      "Age": "25–30",
+      "Gender": "M",
+      "City / Region": "Jaipur Zone",
+      "Income": "₹5,12,550",
+      "Education": "Graduate",
+      "Occupation": "Developer",
+      "Disease": "Asthma"
+    },
+    {
+      "Age": "30–35",
+      "Gender": "F",
+      "City / Region": "Delhi NCR",
+      "Income": "₹6,93,450",
+      "Education": "Graduate",
+      "Occupation": "Officer",
+      "Disease": "Flu"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "M",
+      "City / Region": "Mumbai Metro",
+      "Income": "₹8,53,750",
+      "Education": "Postgraduate",
+      "Occupation": "Analyst",
+      "Disease": "Cancer"
+    },
+    {
+      "Age": "25–30",
+      "Gender": "F",
+      "City / Region": "Chennai Zone",
+      "Income": "₹5,42,250",
+      "Education": "Graduate",
+      "Occupation": "Clerk",
+      "Disease": "Asthma"
+    },
+    {
+      "Age": "45–50",
+      "Gender": "M",
+      "City / Region": "Kolkata Dist",
+      "Income": "₹9,55,250",
+      "Education": "Graduate",
+      "Occupation": "Lawyer",
+      "Disease": "Diabetes"
+    },
+    {
+      "Age": "40–45",
+      "Gender": "F",
+      "City / Region": "UP Central",
+      "Income": "₹8,13,800",
+      "Education": "Postgraduate",
+      "Occupation": "Manager",
+      "Disease": "Flu"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "M",
+      "City / Region": "Bengaluru",
+      "Income": "₹7,93,050",
+      "Education": "Graduate",
+      "Occupation": "Engineer",
+      "Disease": "Cancer"
+    },
+    {
+      "Age": "30–35",
+      "Gender": "F",
+      "City / Region": "Pune Metro",
+      "Income": "₹7,33,150",
+      "Education": "Graduate",
+      "Occupation": "Accountant",
+      "Disease": "Migraine"
+    },
+    {
+      "Age": "30–35",
+      "Gender": "M",
+      "City / Region": "Hyderabad",
+      "Income": "₹6,67,450",
+      "Education": "Graduate",
+      "Occupation": "Developer",
+      "Disease": "Asthma"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "F",
+      "City / Region": "Jaipur Zone",
+      "Income": "₹7,12,750",
+      "Education": "Postgraduate",
+      "Occupation": "Technician",
+      "Disease": "Diabetes"
+    },
+    {
+      "Age": "40–45",
+      "Gender": "M",
+      "City / Region": "Delhi NCR",
+      "Income": "₹9,07,450",
+      "Education": "Graduate",
+      "Occupation": "Director",
+      "Disease": "Flu"
+    },
+    {
+      "Age": "25–30",
+      "Gender": "F",
+      "City / Region": "Mumbai Metro",
+      "Income": "₹5,87,250",
+      "Education": "Graduate",
+      "Occupation": "Assistant",
+      "Disease": "Cancer"
+    },
+    {
+      "Age": "35–40",
+      "Gender": "M",
+      "City / Region": "Chennai Zone",
+      "Income": "₹7,76,550",
+      "Education": "Postgraduate",
+      "Occupation": "Lawyer",
+      "Disease": "Migraine"
+    },
+    {
+      "Age": "45–50",
+      "Gender": "F",
+      "City / Region": "Kolkata Dist",
+      "Income": "₹10,34,150",
+      "Education": "Graduate",
+      "Occupation": "Consultant",
+      "Disease": "Asthma"
     }
+  ];
+
+  useEffect(() => {
+    // Simulate rectification process
+    const rectificationSteps = [
+      'Initializing data rectification engine...',
+      'Applying k-anonymity algorithms...',
+      'Implementing l-diversity measures...',
+      'Adding differential privacy noise...',
+      'Generalizing quasi-identifiers...',
+      'Suppressing rare values...',
+      'Generating synthetic data...',
+      'Validating privacy compliance...',
+      'Rectification complete!'
+    ];
+
+    let currentStep = 0;
+    const interval = setInterval(() => {
+      if (currentStep < rectificationSteps.length) {
+        setRectificationStep(rectificationSteps[currentStep]);
+        currentStep++;
+      } else {
+        clearInterval(interval);
+        setIsProcessing(false);
+        // Gradually reveal data
+        revealData();
+      }
+    }, 800);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const revealData = () => {
+    setShowData(true);
+    let revealed = 0;
+    const interval = setInterval(() => {
+      if (revealed < Math.min(10, rectifiedData.length)) {
+        setDataRevealed(revealed + 1);
+        revealed++;
+      } else {
+        clearInterval(interval);
+        // Show summary after data reveal
+        setTimeout(() => setShowSummary(true), 500);
+      }
+    }, 200);
   };
 
-  const getConfidenceColor = (confidence) => {
-    if (confidence >= 95) return 'text-green-600';
-    if (confidence >= 85) return 'text-yellow-600';
-    return 'text-red-600';
+  const handleDownload = () => {
+    const csvContent = [
+      Object.keys(rectifiedData[0]).join(','),
+      ...rectifiedData.map(row => Object.values(row).join(','))
+    ].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'rectified_data.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
   };
 
-  // Use local rectified data if available, otherwise use prop
-  const dataToShow = localRectifiedData.length > 0 ? localRectifiedData : rectifiedData;
+  const handleGenerateReport = () => {
+    navigate('/report');
+  };
 
-  return (
-    <div className="modern-card rounded-3xl p-12 mb-8 max-w-7xl mx-auto">
-      <div className="text-center mb-12">
-        <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
-          <span className="text-3xl text-white">🔧</span>
-        </div>
-        <h2 className="text-4xl font-bold text-gray-800 mb-6 font-['Raleway']">Data Rectification</h2>
-        <p className="text-gray-600 text-xl font-['Manrope'] leading-relaxed">
-          Clean and sanitize detected malicious data using recommended security solutions
-        </p>
-      </div>
-
-      {/* Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-        <div className="bg-blue-50 rounded-2xl p-6 text-center border border-blue-200 shadow-lg">
-          <div className="text-4xl font-bold text-blue-600 font-['Raleway']">{detectedAttacks.length}</div>
-          <div className="text-sm text-blue-700 font-medium font-['Manrope']">Attacks Detected</div>
-        </div>
-        <div className="bg-purple-50 rounded-2xl p-6 text-center border border-purple-200 shadow-lg">
-          <div className="text-4xl font-bold text-purple-600 font-['Raleway']">{solutions.length}</div>
-          <div className="text-sm text-purple-700 font-medium font-['Manrope']">Solutions Applied</div>
-        </div>
-        <div className="bg-green-50 rounded-2xl p-6 text-center border border-green-200 shadow-lg">
-          <div className="text-4xl font-bold text-green-600 font-['Raleway']">
-            {dataToShow.length > 0 ? dataToShow.length : '0'}
-          </div>
-          <div className="text-sm text-green-700 font-medium font-['Manrope']">Records Processed</div>
-        </div>
-        <div className="bg-orange-50 rounded-2xl p-6 text-center border border-orange-200 shadow-lg">
-          <div className="text-4xl font-bold text-orange-600 font-['Raleway']">
-            {dataToShow.length > 0 ? Math.round(dataToShow.reduce((acc, item) => acc + item.confidence, 0) / dataToShow.length) : '0'}%
-          </div>
-          <div className="text-sm text-orange-700 font-medium font-['Manrope']">Avg Confidence</div>
-        </div>
-      </div>
-
-      {/* Start Rectification Button */}
-      {!rectificationComplete && (
-        <div className="text-center mb-12">
-          <button
-            onClick={startRectification}
-            disabled={isRectifying}
-            className={`px-12 py-5 rounded-2xl font-semibold transition-all duration-300 transform text-xl font-['Manrope'] ${
-              isRectifying
-                ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                : 'modern-btn hover:scale-105'
-            }`}
-          >
-            {isRectifying ? (
-              <div className="flex items-center space-x-4">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
-                <span>Rectifying Data...</span>
+  if (isProcessing) {
+    return (
+      <div className="min-h-screen bg-white py-16">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Rectification Animation */}
+            <div className="mb-12">
+              <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
+                <span className="text-6xl">🔧</span>
               </div>
-            ) : (
-              '🔧 Start Rectifying Data'
-            )}
-          </button>
-        </div>
-      )}
+              <h1 className="text-4xl font-bold text-gray-800 mb-4">Data Rectification in Progress</h1>
+              <p className="text-lg text-gray-600 mb-8">
+                Applying advanced privacy-preserving techniques to secure your data...
+              </p>
+            </div>
 
-      {/* Rectification Progress */}
-      {isRectifying && (
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-10 mb-12 border border-gray-200 shadow-lg">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-24 w-24 border-b-2 border-purple-500 mx-auto mb-8"></div>
-            <h3 className="text-2xl font-semibold text-gray-800 mb-6 font-['Raleway']">Data Rectification in Progress</h3>
-            <div className="space-y-4 text-gray-600 font-['Manrope'] text-lg">
-              <p>🧹 Cleaning SQL injection patterns...</p>
-              <p>🛡️ Sanitizing XSS payloads...</p>
-              <p>🔍 Removing malicious code...</p>
-              <p>✅ Validating cleaned data...</p>
-              <p>📊 Generating rectification report...</p>
+            {/* Progress Steps */}
+            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200 max-w-2xl mx-auto">
+              <div className="inline-block animate-spin rounded-full h-16 w-16 border-b-2 border-gray-600 mb-6"></div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Current Step:</h3>
+              <p className="text-lg text-gray-600 mb-6">{rectificationStep}</p>
+              
+              {/* Progress Bar */}
+              <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
+                <div className="bg-gray-600 h-3 rounded-full transition-all duration-1000 ease-out animate-pulse"></div>
+              </div>
+              
+              {/* Security Icons */}
+              <div className="flex justify-center space-x-4 mt-6">
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center animate-bounce">
+                  <span className="text-gray-600 text-sm">🔒</span>
+                </div>
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center animate-bounce" style={{ animationDelay: '0.2s' }}>
+                  <span className="text-gray-600 text-sm">🛡️</span>
+                </div>
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center animate-bounce" style={{ animationDelay: '0.4s' }}>
+                  <span className="text-gray-600 text-sm">⚡</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
+    );
+  }
 
-      {/* Rectified Data Display */}
-      {rectificationComplete && dataToShow.length > 0 && (
-        <div className="space-y-12">
-          <div className="text-center">
-            <h3 className="text-3xl font-bold text-gray-800 mb-6 font-['Raleway']">✅ Data Rectification Complete</h3>
-            <p className="text-gray-600 text-xl font-['Manrope'] leading-relaxed">
-              Successfully processed {dataToShow.length} records with security measures
+  return (
+    <div className="min-h-screen bg-white py-16">
+      <div className="container mx-auto px-6">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium mb-6 border border-gray-200">
+              <span className="w-2 h-2 bg-gray-600 rounded-full mr-2 animate-pulse"></span>
+              Data Rectification Complete
+            </div>
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">Your Data Has Been Secured</h1>
+            <p className="text-lg text-gray-600">
+              All vulnerabilities have been addressed and your data is now privacy-compliant
             </p>
           </div>
 
-          {/* Rectified Data Table */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-xl">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
-                  <tr>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">ID</th>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Original Value</th>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Rectified Value</th>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Attack Type</th>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Status</th>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Confidence</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {dataToShow.map((record) => (
-                    <tr key={record.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-8 py-6">
-                        <span className="text-sm text-gray-600 font-medium font-['Manrope']">{record.id}</span>
-                      </td>
-                      <td className="px-8 py-6">
-                        <div className="max-w-xs">
-                          <div className="text-sm text-red-600 font-mono break-all bg-red-50 p-2 rounded border border-red-200 font-['JetBrains Mono']">{record.originalValue}</div>
-                        </div>
-                      </td>
-                      <td className="px-8 py-6">
-                        <div className="max-w-xs">
-                          <div className="text-sm text-green-600 font-mono break-all bg-green-50 p-2 rounded border border-green-200 font-['JetBrains Mono']">{record.rectifiedValue}</div>
-                        </div>
-                      </td>
-                      <td className="px-8 py-6">
-                        <span className="text-sm text-gray-700 font-medium font-['Manrope']">{record.attackType}</span>
-                      </td>
-                      <td className="px-8 py-6">
-                        <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${getStatusColor(record.status)} font-['Manrope']`}>
-                          {record.status}
-                        </span>
-                      </td>
-                      <td className="px-8 py-6">
-                        <span className={`text-sm font-medium ${getConfidenceColor(record.confidence)} font-['Manrope']`}>
-                          {record.confidence}%
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          {/* Summary Cards with Animation */}
+      
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button
-              onClick={downloadRectifiedData}
-              className="px-12 py-5 bg-green-600 hover:bg-green-700 text-white rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg text-xl font-['Manrope']"
-            >
-              📥 Download Rectified Data (CSV)
-            </button>
-            <button
-              onClick={() => onDataRectification(dataToShow)}
-              className="modern-btn px-12 py-5 text-xl font-['Manrope'] hover:scale-105"
-            >
-              📊 Generate Report
-            </button>
-          </div>
+          {/* Data Preview with Progressive Reveal */}
+          {showData && (
+            <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden mb-12 animate-fade-in">
+              <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-800">Rectified Data Preview</h2>
+                <p className="text-sm text-gray-600">
+                  Showing {dataRevealed} of {rectifiedData.length} records of your secured dataset
+                </p>
+              </div>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Age
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Gender
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        City / Region
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Income
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Education
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Occupation
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Disease
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {rectifiedData.slice(0, dataRevealed).map((row, index) => (
+                      <tr key={index} className="hover:bg-gray-50 transition-all duration-300 animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Age}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Gender}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row["City / Region"]}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Income}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Education}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Occupation}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Disease}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+        
+
+          {/* Action Buttons with Animation */}
+          {showSummary && (
+            <div className="text-center space-y-6 animate-fade-in">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                  onClick={handleDownload}
+                  className="px-8 py-4 bg-gray-700 text-white rounded-xl text-lg font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  📥 Download Rectified Data
+                </button>
+                <button
+                  onClick={handleGenerateReport}
+                  className="px-8 py-4 bg-gray-800 text-white rounded-xl text-lg font-semibold hover:bg-gray-900 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  📊 Generate Security Report
+                </button>
+              </div>
+              <p className="text-sm text-gray-500">
+                Download your secured data or generate a comprehensive security report
+              </p>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

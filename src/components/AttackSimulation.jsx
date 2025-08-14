@@ -1,278 +1,296 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const AttackSimulation = ({ dataFile1, dataFile2, onAttackSimulation, detectedAttacks }) => {
-  const [isSimulating, setIsSimulating] = useState(false);
-  const [localDetectedAttacks, setLocalDetectedAttacks] = useState([]);
-  const [simulationComplete, setIsSimulationComplete] = useState(false);
+const AttackSimulation = () => {
+  const navigate = useNavigate();
+  const [isAnalyzing, setIsAnalyzing] = useState(true);
+  const [analysisStep, setAnalysisStep] = useState('');
+  const [vulnerabilitiesRevealed, setVulnerabilitiesRevealed] = useState(0);
+  const [showVulnerabilities, setShowVulnerabilities] = useState(false);
 
-  // Mock attack detection function using Risks.json data
-  const simulateAttackDetection = () => {
-    setIsSimulating(true);
-    
-    // Simulate processing time
-    setTimeout(() => {
-      const mockAttacks = [
-        {
-          id: 1,
-          name: 'Low k-Anonymity',
-          severity: 'High',
-          description: 'Age + Gender + City unique for 22% records',
-          timestamp: new Date().toISOString(),
-          affectedRecords: 156,
-          confidence: 95
-        },
-        {
-          id: 2,
-          name: 'Poor l-Diversity',
-          severity: 'Medium',
-          description: 'Disease attribute has only 1 value in 6 groups',
-          timestamp: new Date().toISOString(),
-          affectedRecords: 89,
-          confidence: 87
-        },
-        {
-          id: 3,
-          name: 'High t-Closeness',
-          severity: 'Critical',
-          description: 'Income deviation in Delhi is 0.35 (threshold 0.2)',
-          timestamp: new Date().toISOString(),
-          affectedRecords: 234,
-          confidence: 92
-        },
-        {
-          id: 4,
-          name: 'High δ-Disclosure',
-          severity: 'High',
-          description: 'Re-ID probability exceeds 0.18 for rare occupations',
-          timestamp: new Date().toISOString(),
-          affectedRecords: 67,
-          confidence: 78
-        },
-        {
-          id: 5,
-          name: 'Attribute Disclosure',
-          severity: 'Critical',
-          description: '"Director" often linked with Cancer or Asthma',
-          timestamp: new Date().toISOString(),
-          affectedRecords: 45,
-          confidence: 96
-        },
-        {
-          id: 6,
-          name: 'Minimality Attack',
-          severity: 'Medium',
-          description: 'Suppression patterns reveal original values in 14 records',
-          timestamp: new Date().toISOString(),
-          affectedRecords: 23,
-          confidence: 82
-        },
-        {
-          id: 7,
-          name: 'Background Knowledge Attack',
-          severity: 'High',
-          description: 'Occupation + City reveals exact Name in ground truth',
-          timestamp: new Date().toISOString(),
-          affectedRecords: 34,
-          confidence: 89
-        },
-        {
-          id: 8,
-          name: 'Deterministic Linkage',
-          severity: 'Critical',
-          description: 'Exact Age + Gender + City match in both datasets',
-          timestamp: new Date().toISOString(),
-          affectedRecords: 78,
-          confidence: 94
-        }
-      ];
+  const vulnerabilityData = [
+    {
+      "Risk / Vulnerability": "Low k-Anonymity",
+      "Description": "Age + Gender + City unique for 22% records"
+    },
+    {
+      "Risk / Vulnerability": "Poor l-Diversity",
+      "Description": "Disease attribute has only 1 value in 6 groups"
+    },
+    {
+      "Risk / Vulnerability": "High t-Closeness",
+      "Description": "Income deviation in Delhi is 0.35 (threshold 0.2)"
+    },
+    {
+      "Risk / Vulnerability": "High δ-Disclosure",
+      "Description": "Re-ID probability exceeds 0.18 for rare occupations"
+    },
+    {
+      "Risk / Vulnerability": "Attribute Disclosure",
+      "Description": "\"Director\" often linked with Cancer or Asthma"
+    },
+    {
+      "Risk / Vulnerability": "Minimality Attack",
+      "Description": "Suppression patterns reveal original values in 14 records"
+    },
+    {
+      "Risk / Vulnerability": "Background Knowledge Attack",
+      "Description": "Occupation + City reveals exact Name in ground truth"
+    },
+    {
+      "Risk / Vulnerability": "Composition Attack",
+      "Description": "Public salary data matches 19 individuals"
+    },
+    {
+      "Risk / Vulnerability": "Deterministic Linkage",
+      "Description": "Exact Age + Gender + City match in both datasets"
+    },
+    {
+      "Risk / Vulnerability": "Probabilistic Linkage",
+      "Description": "\"Bengaluru\" matches \"Bangalore\" via fuzzy linking"
+    },
+    {
+      "Risk / Vulnerability": "ML-based Linkage",
+      "Description": "AI model predicts matches with 88% accuracy"
+    },
+    {
+      "Risk / Vulnerability": "Quasi-Identifier Risk",
+      "Description": "Age + City links to single person in small cities"
+    }
+  ];
 
-      setLocalDetectedAttacks(mockAttacks);
-      setIsSimulating(false);
-      setIsSimulationComplete(true);
-    }, 3000);
+  useEffect(() => {
+    // Simulate attack analysis process
+    const analysisSteps = [
+      'Initializing attack simulation engine...',
+      'Loading vulnerability databases...',
+      'Analyzing data patterns...',
+      'Detecting privacy violations...',
+      'Identifying attack vectors...',
+      'Calculating risk scores...',
+      'Generating vulnerability report...',
+      'Analysis complete!'
+    ];
+
+    let currentStep = 0;
+    const interval = setInterval(() => {
+      if (currentStep < analysisSteps.length) {
+        setAnalysisStep(analysisSteps[currentStep]);
+        currentStep++;
+      } else {
+        clearInterval(interval);
+        setIsAnalyzing(false);
+        // Gradually reveal vulnerabilities
+        revealVulnerabilities();
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const revealVulnerabilities = () => {
+    setShowVulnerabilities(true);
+    let revealed = 0;
+    const interval = setInterval(() => {
+      if (revealed < vulnerabilityData.length) {
+        setVulnerabilitiesRevealed(revealed + 1);
+        revealed++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 200);
   };
 
-  const getSeverityColor = (severity) => {
-    switch (severity.toLowerCase()) {
-      case 'critical':
-        return 'bg-red-600 text-white';
+  const handleGetSolution = () => {
+    navigate('/solutions');
+  };
+
+  const getRiskLevel = (vulnerability) => {
+    if (vulnerability.includes('High')) return 'high';
+    if (vulnerability.includes('Low')) return 'low';
+    if (vulnerability.includes('Poor')) return 'medium';
+    return 'medium';
+  };
+
+  const getRiskColor = (level) => {
+    switch (level) {
       case 'high':
-        return 'bg-orange-500 text-white';
+        return 'bg-gray-800 text-white border-gray-700';
       case 'medium':
-        return 'bg-yellow-500 text-black';
+        return 'bg-gray-600 text-white border-gray-500';
       case 'low':
-        return 'bg-green-500 text-white';
+        return 'bg-gray-400 text-white border-gray-300';
       default:
-        return 'bg-gray-500 text-white';
+        return 'bg-gray-500 text-white border-gray-400';
     }
   };
 
-  const getConfidenceColor = (confidence) => {
-    if (confidence >= 90) return 'text-green-600';
-    if (confidence >= 70) return 'text-yellow-600';
-    return 'text-red-600';
-  };
-
-  // Use local attacks if available, otherwise use prop
-  const attacksToShow = localDetectedAttacks.length > 0 ? localDetectedAttacks : detectedAttacks;
-
-  return (
-    <div className="modern-card rounded-3xl p-12 mb-8 max-w-7xl mx-auto">
-      <div className="text-center mb-12">
-        <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl">
-          <span className="text-3xl text-white">🔍</span>
-        </div>
-        <h2 className="text-4xl font-bold text-gray-800 mb-6 font-['Raleway']">Attack Simulation</h2>
-        <p className="text-gray-600 text-xl font-['Manrope'] leading-relaxed">
-          Analyzing datasets for cyber attack patterns and vulnerabilities
-        </p>
-      </div>
-
-      {/* File Info */}
-      <div className="grid md:grid-cols-2 gap-8 mb-12">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border border-blue-200 shadow-lg">
-          <h3 className="text-xl font-semibold text-blue-600 mb-4 font-['Raleway']">Dataset 1</h3>
-          <p className="text-gray-700 font-medium font-['Manrope'] text-lg">{dataFile1?.name || 'No file uploaded'}</p>
-          <p className="text-sm text-gray-600 font-['Manrope'] mt-2">
-            Size: {dataFile1 ? `${(dataFile1.size / 1024 / 1024).toFixed(2)} MB` : 'N/A'}
-          </p>
-        </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border border-green-200 shadow-lg">
-          <h3 className="text-xl font-semibold text-green-600 mb-4 font-['Raleway']">Dataset 2</h3>
-          <p className="text-gray-700 font-medium font-['Manrope'] text-lg">{dataFile2?.name || 'No file uploaded'}</p>
-          <p className="text-sm text-gray-600 font-['Manrope'] mt-2">
-            Size: {dataFile2 ? `${(dataFile2.size / 1024 / 1024).toFixed(2)} MB` : 'N/A'}
-          </p>
-        </div>
-      </div>
-
-      {/* Simulation Button */}
-      {!simulationComplete && (
-        <div className="text-center mb-12">
-          <button
-            onClick={simulateAttackDetection}
-            disabled={isSimulating}
-            className={`px-12 py-5 rounded-2xl font-semibold transition-all duration-300 transform text-xl font-['Manrope'] ${
-              isSimulating
-                ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
-                : 'modern-btn hover:scale-105'
-            }`}
-          >
-            {isSimulating ? (
-              <div className="flex items-center space-x-4">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
-                <span>Analyzing Datasets...</span>
+  if (isAnalyzing) {
+    return (
+      <div className="min-h-screen bg-white py-16">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Analysis Animation */}
+            <div className="mb-12">
+              <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
+                <span className="text-6xl">🔍</span>
               </div>
-            ) : (
-              '🚨 Run Attack Simulation'
-            )}
-          </button>
-        </div>
-      )}
+              <h1 className="text-4xl font-bold text-gray-800 mb-4">Attack Simulation in Progress</h1>
+              <p className="text-lg text-gray-600 mb-8">
+                Analyzing your data for potential security vulnerabilities...
+              </p>
+            </div>
 
-      {/* Simulation Progress */}
-      {isSimulating && (
-        <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-10 mb-12 border border-gray-200 shadow-lg">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-24 w-24 border-b-2 border-blue-500 mx-auto mb-8"></div>
-            <h3 className="text-2xl font-semibold text-gray-800 mb-6 font-['Raleway']">Simulating Cyber Attack Detection</h3>
-            <div className="space-y-4 text-gray-600 font-['Manrope'] text-lg">
-              <p>🔍 Scanning for privacy vulnerabilities...</p>
-              <p>🛡️ Checking for data linkage risks...</p>
-              <p>📊 Analyzing anonymization patterns...</p>
-              <p>🔐 Monitoring disclosure risks...</p>
-              <p>🦠 Detecting re-identification threats...</p>
+            {/* Progress Steps */}
+            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200 max-w-2xl mx-auto">
+              <div className="inline-block animate-spin rounded-full h-16 w-16 border-b-2 border-gray-600 mb-6"></div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Current Step:</h3>
+              <p className="text-lg text-gray-600 mb-6">{analysisStep}</p>
+              
+              {/* Progress Bar */}
+              <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
+                <div className="bg-gray-600 h-3 rounded-full transition-all duration-1000 ease-out animate-pulse"></div>
+              </div>
+              
+              {/* Security Icons */}
+              <div className="flex justify-center space-x-4 mt-6">
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center animate-bounce">
+                  <span className="text-gray-600 text-sm">🔒</span>
+                </div>
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center animate-bounce" style={{ animationDelay: '0.2s' }}>
+                  <span className="text-gray-600 text-sm">🛡️</span>
+                </div>
+                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center animate-bounce" style={{ animationDelay: '0.4s' }}>
+                  <span className="text-gray-600 text-sm">⚡</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
+    );
+  }
 
-      {/* Results */}
-      {simulationComplete && attacksToShow.length > 0 && (
-        <div className="space-y-12">
-          <div className="text-center">
-            <h3 className="text-3xl font-bold text-gray-800 mb-6 font-['Raleway']">🚨 Attack Detection Results</h3>
-            <p className="text-gray-600 text-xl font-['Manrope'] leading-relaxed">
-              {attacksToShow.length} cyber attacks detected in your datasets
+  return (
+    <div className="min-h-screen bg-white py-16">
+      <div className="container mx-auto px-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium mb-6 border border-gray-200">
+              <span className="w-2 h-2 bg-gray-600 rounded-full mr-2 animate-pulse"></span>
+              Attack Simulation Results
+            </div>
+            <h1 className="text-4xl font-bold text-gray-800 mb-4">Cyber Attack Vulnerability Analysis</h1>
+            <p className="text-lg text-gray-600">
+              Analysis complete! We've identified several security vulnerabilities in your data
             </p>
           </div>
 
-          {/* Summary Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6 text-center border border-red-200 shadow-lg">
-              <div className="text-4xl font-bold text-red-600 font-['Raleway']">{attacksToShow.filter(a => a.severity === 'Critical').length}</div>
-              <div className="text-sm text-red-700 font-medium font-['Manrope']">Critical</div>
-            </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 text-center border border-orange-200 shadow-lg">
-              <div className="text-4xl font-bold text-orange-600 font-['Raleway']">{attacksToShow.filter(a => a.severity === 'High').length}</div>
-              <div className="text-sm text-orange-700 font-medium font-['Manrope']">High</div>
-            </div>
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-6 text-center border border-yellow-200 shadow-lg">
-              <div className="text-4xl font-bold text-yellow-600 font-['Raleway']">{attacksToShow.filter(a => a.severity === 'Medium').length}</div>
-              <div className="text-sm text-yellow-700 font-medium font-['Manrope']">Medium</div>
-            </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 text-center border border-green-200 shadow-lg">
-              <div className="text-4xl font-bold text-green-600 font-['Raleway']">{attacksToShow.filter(a => a.severity === 'Low').length}</div>
-              <div className="text-sm text-green-700 font-medium font-['Manrope']">Low</div>
-            </div>
-          </div>
 
-          {/* Attacks Table */}
-          <div className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-xl">
+          {/* Vulnerability Table with Progressive Reveal */}
+          {showVulnerabilities && (
+          <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden mb-12">
+            <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+              <h2 className="text-xl font-semibold text-gray-800">Detected Vulnerabilities</h2>
+                <p className="text-sm text-gray-600">
+                  {vulnerabilitiesRevealed} of {vulnerabilityData.length} vulnerabilities analyzed
+                </p>
+            </div>
+            
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
+                <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Attack</th>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Severity</th>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Description</th>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Records</th>
-                    <th className="px-8 py-6 text-left text-sm font-semibold text-gray-700 uppercase tracking-wider font-['Raleway']">Confidence</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Risk Level
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Vulnerability Type
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Description
+                    </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {attacksToShow.map((attack) => (
-                    <tr key={attack.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-8 py-6">
-                        <div>
-                          <div className="text-sm font-medium text-gray-800 font-['Manrope']">{attack.name}</div>
-                          <div className="text-xs text-gray-500 font-['Manrope']">{new Date(attack.timestamp).toLocaleString()}</div>
-                        </div>
-                      </td>
-                      <td className="px-8 py-6">
-                        <span className={`inline-flex px-4 py-2 text-sm font-semibold rounded-full ${getSeverityColor(attack.severity)}`}>
-                          {attack.severity}
-                        </span>
-                      </td>
-                      <td className="px-8 py-6">
-                        <div className="text-sm text-gray-700 max-w-xs font-['Manrope']">{attack.description}</div>
-                      </td>
-                      <td className="px-8 py-6">
-                        <span className="text-sm text-gray-600 font-medium font-['Manrope']">{attack.affectedRecords}</span>
-                      </td>
-                      <td className="px-8 py-6">
-                        <span className={`text-sm font-medium ${getConfidenceColor(attack.confidence)} font-['Manrope']`}>
-                          {attack.confidence}%
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
+                <tbody className="bg-white divide-y divide-gray-200">
+                    {vulnerabilityData.slice(0, vulnerabilitiesRevealed).map((item, index) => {
+                    const riskLevel = getRiskLevel(item["Risk / Vulnerability"]);
+                    const riskColor = getRiskColor(riskLevel);
+                    
+                    return (
+                        <tr key={index} className="hover:bg-gray-50 transition-all duration-300 animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${riskColor}`}>
+                            {riskLevel.toUpperCase()}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {item["Risk / Vulnerability"]}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {item.Description}
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
           </div>
+          )}
 
-          {/* Proceed Button */}
-          <div className="text-center">
-            <button
-              onClick={() => onAttackSimulation(attacksToShow)}
-              className="modern-btn px-12 py-5 text-xl font-['Manrope'] hover:scale-105"
-            >
-              💡 Get Solution Suggestions
-            </button>
+          {/* Risk Distribution Chart */}
+          {showVulnerabilities && vulnerabilitiesRevealed === vulnerabilityData.length && (
+            <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200 mb-12 animate-fade-in">
+            <h3 className="text-xl font-semibold text-gray-800 mb-6">Risk Distribution</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+                <div className="text-center transform hover:scale-105 transition-transform duration-300">
+                  <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+                    <span className="text-3xl text-gray-800">🔴</span>
+                </div>
+                  <div className="text-2xl font-bold text-gray-800 mb-2">2</div>
+                <div className="text-sm text-gray-600">High Risk Vulnerabilities</div>
+                <div className="text-xs text-gray-500 mt-1">Immediate attention required</div>
+              </div>
+              
+                <div className="text-center transform hover:scale-105 transition-transform duration-300">
+                  <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce" style={{ animationDelay: '0.2s' }}>
+                    <span className="text-3xl text-gray-700">🟡</span>
+                </div>
+                  <div className="text-2xl font-bold text-gray-700 mb-2">7</div>
+                <div className="text-sm text-gray-600">Medium Risk Vulnerabilities</div>
+                <div className="text-xs text-gray-500 mt-1">Address within 24 hours</div>
+              </div>
+              
+                <div className="text-center transform hover:scale-105 transition-transform duration-300">
+                  <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce" style={{ animationDelay: '0.4s' }}>
+                    <span className="text-3xl text-gray-600">🟢</span>
+                </div>
+                  <div className="text-2xl font-bold text-gray-600 mb-2">1</div>
+                <div className="text-sm text-gray-600">Low Risk Vulnerabilities</div>
+                <div className="text-xs text-gray-500 mt-1">Monitor and review</div>
+              </div>
+            </div>
           </div>
+          )}
+
+          {/* Action Button */}
+          {showVulnerabilities && vulnerabilitiesRevealed === vulnerabilityData.length && (
+            <div className="text-center animate-fade-in">
+            <button
+              onClick={handleGetSolution}
+                className="px-12 py-4 bg-gray-800 text-white rounded-xl text-lg font-semibold hover:bg-gray-900 transition-all duration-300 transform hover:scale-105 shadow-xl"
+            >
+              💡 Get Solution & Recommendations
+            </button>
+            <p className="text-sm text-gray-500 mt-3">
+              We'll provide detailed solutions for each vulnerability detected
+            </p>
+          </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
