@@ -186,12 +186,7 @@ const FileUpload = () => {
               >
                 Choose File
               </button>
-              <button
-                onClick={() => handleDownloadSample(fileType)}
-                className="w-full px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors border border-gray-300"
-              >
-                📥 Download Sample {fileType === 'groundData' ? 'Ground Data' : 'Microdata'}
-              </button>
+             
             </div>
             <p className="text-xs text-gray-500 mt-2">or drag and drop here</p>
           </div>
@@ -233,7 +228,6 @@ const FileUpload = () => {
               <h2 className="text-2xl font-bold text-gray-800 mb-2">Need Sample Data?</h2>
               <p className="text-gray-600">Test the system immediately with our sample datasets</p>
             </div>
-            
             {/* Straight Upload Button */}
             <div className="text-center">
               <button
@@ -247,24 +241,20 @@ const FileUpload = () => {
               </p>
             </div>
           </div>
-
-          {/* File Upload Areas */}
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
-            <FileUploadArea
-              fileType="groundData"
-              title="Ground Data"
-              description="Upload your main dataset containing the primary information to be secured"
-              icon="📊"
-            />
             <FileUploadArea
               fileType="microData"
               title="Microdata"
               description="Upload your microdata file with additional context and metadata"
               icon="🔍"
             />
+            <FileUploadArea
+              fileType="groundData"
+              title="Ground Data"
+              description="Upload your main dataset containing the primary information to be secured"
+              icon="📊"
+            />
           </div>
-
-          {/* Processing Animation */}
           {isProcessing && (
             <div className="text-center mb-8">
               <div className="bg-white rounded-xl p-8 shadow-lg border border-gray-200 max-w-md mx-auto">

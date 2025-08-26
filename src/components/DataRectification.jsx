@@ -8,6 +8,7 @@ const DataRectification = () => {
   const [dataRevealed, setDataRevealed] = useState(0);
   const [showData, setShowData] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const rectifiedData = [
     {
@@ -402,11 +403,21 @@ const DataRectification = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    // Ensure current page stays within available pages as data reveals
+    const pageSize = 10;
+    const availableCount = Math.min(40, dataRevealed);
+    const totalPages = Math.max(1, Math.ceil(availableCount / pageSize));
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [dataRevealed, currentPage]);
+
   const revealData = () => {
     setShowData(true);
     let revealed = 0;
     const interval = setInterval(() => {
-      if (revealed < Math.min(10, rectifiedData.length)) {
+      if (revealed < Math.min(40, rectifiedData.length)) {
         setDataRevealed(revealed + 1);
         revealed++;
       } else {
@@ -427,7 +438,7 @@ const DataRectification = () => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'rectified_data.csv';
+    a.download = 'rectified_data_123.csv';
     a.click();
     window.URL.revokeObjectURL(url);
   };
@@ -539,19 +550,54 @@ const DataRectification = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {rectifiedData.slice(0, dataRevealed).map((row, index) => (
-                      <tr key={index} className="hover:bg-gray-50 transition-all duration-300 animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Age}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Gender}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row["City / Region"]}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Income}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Education}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Occupation}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Disease}</td>
-                      </tr>
-                    ))}
+                    {(() => {
+                      const pageSize = 10;
+                      const availableCount = Math.min(40, dataRevealed);
+                      const startIndex = (currentPage - 1) * pageSize;
+                      const endIndex = Math.min(startIndex + pageSize, availableCount);
+                      return rectifiedData.slice(0, availableCount).slice(startIndex, endIndex).map((row, index) => (
+                        <tr key={`${startIndex + index}`} className="hover:bg-gray-50 transition-all duration-300 animate-fade-in" style={{ animationDelay: `${index * 50}ms` }}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Age}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Gender}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row["City / Region"]}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Income}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Education}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Occupation}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{row.Disease}</td>
+                        </tr>
+                      ));
+                    })()}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Pagination Controls */}
+              <div className="px-6 py-4 border-t border-gray-200 bg-white flex items-center justify-between">
+                <button
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium border ${currentPage === 1 ? 'text-gray-400 border-gray-200 cursor-not-allowed' : 'text-gray-700 border-gray-300 hover:bg-gray-50'}`}
+                >
+                  Previous
+                </button>
+                <div className="flex items-center gap-2">
+                  {[1, 2, 3, 4].map((num) => (
+                    <button
+                      key={num}
+                      onClick={() => setCurrentPage(num)}
+                      className={`w-10 h-10 rounded-lg text-sm font-semibold border ${currentPage === num ? 'bg-gray-800 text-white border-gray-800' : 'text-gray-700 border-gray-300 hover:bg-gray-50'}`}
+                    >
+                      {num}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setCurrentPage((p) => Math.min(4, p + 1))}
+                  disabled={currentPage === 4}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium border ${currentPage === 4 ? 'text-gray-400 border-gray-200 cursor-not-allowed' : 'text-gray-700 border-gray-300 hover:bg-gray-50'}`}
+                >
+                  Next
+                </button>
               </div>
             </div>
           )}
